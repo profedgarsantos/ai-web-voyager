@@ -55,11 +55,11 @@ const AIDirectory = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900">
-      {/* Header */}
-      <header className="relative overflow-hidden">
+      {/* Header with Search */}
+      <header className="relative overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20 backdrop-blur-sm"></div>
-        <div className="relative container mx-auto px-6 py-16">
-          <div className="text-center">
+        <div className="relative container mx-auto px-6 pt-12 pb-8">
+          <div className="text-center mb-8">
             <div className="flex items-center justify-center gap-3 mb-6">
               <div className="relative">
                 <Brain className="w-12 h-12 text-purple-400" />
@@ -69,34 +69,40 @@ const AIDirectory = () => {
                 AI Directory
               </h1>
             </div>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-6">
               Descubra as melhores ferramentas de inteligência artificial organizadas por categoria. 
               Explore, pesquise e encontre a solução perfeita para seus projetos.
             </p>
-            <p className="text-sm text-gray-400 mt-4">
-              💡 Dica: Pesquise por "premium", "free", "grátis" ou "pago" para filtrar por tipo de acesso
-            </p>
+          </div>
+          
+          {/* Highlighted Search Section */}
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 shadow-2xl ring-1 ring-purple-500/20">
+              <div className="mb-4 text-center">
+                <h2 className="text-2xl font-semibold text-white mb-2 flex items-center justify-center gap-2">
+                  <Search className="w-6 h-6 text-purple-400" />
+                  Buscar Ferramentas de IA
+                </h2>
+                <p className="text-sm text-gray-400">
+                  💡 Pesquise por nome, descrição, tags, "premium", "free", "grátis" ou "pago"
+                </p>
+              </div>
+              <div className="flex flex-col lg:flex-row gap-4 items-center">
+                <div className="flex-1 w-full">
+                  <SearchBar searchQuery={searchQuery} onSearchChange={setSearchQuery} />
+                </div>
+                <div className="w-full lg:w-auto">
+                  <CategoryFilter 
+                    categories={categories}
+                    selectedCategory={selectedCategory}
+                    onCategoryChange={setSelectedCategory}
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </header>
-
-      {/* Search and Filters */}
-      <div className="container mx-auto px-6 -mt-8 relative z-10">
-        <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 shadow-2xl">
-          <div className="flex flex-col lg:flex-row gap-6 items-center">
-            <div className="flex-1 w-full">
-              <SearchBar searchQuery={searchQuery} onSearchChange={setSearchQuery} />
-            </div>
-            <div className="w-full lg:w-auto">
-              <CategoryFilter 
-                categories={categories}
-                selectedCategory={selectedCategory}
-                onCategoryChange={setSelectedCategory}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* Results Counter */}
       <div className="container mx-auto px-6 py-8">
