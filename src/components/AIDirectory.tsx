@@ -22,11 +22,34 @@ const AIDirectory = () => {
 
   const filteredTools = useMemo(() => {
     return aiTools.filter(tool => {
-      const matchesSearch = tool.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                           tool.description.toLowerCase().includes(searchQuery.toLowerCase());
+      const query = searchQuery.toLowerCase();
+      
+      // Busca por texto (nome, descrição, tags)
+      const matchesText = !query || 
+        tool.name.toLowerCase().includes(query) ||
+        tool.description.toLowerCase().includes(query) ||
+        tool.tags.some(tag => tag.toLowerCase().includes(query));
+      
+      // Busca por categoria
       const matchesCategory = selectedCategory === 'all' || tool.category === selectedCategory;
       
-      return matchesSearch && matchesCategory;
+      // Busca por status premium
+      const matchesPremium = !query || 
+        (query.includes('premium') && tool.isPremium) ||
+        (query.includes('free') && !tool.isPremium) ||
+        (query.includes('grátis') && !tool.isPremium) ||
+        (query.includes('gratuito') && !tool.isPremium) ||
+        (query.includes('pago') && tool.isPremium);
+      
+      // Se a busca contém termos de premium/free, prioriza essa condição
+      const hasPremiumSearch = query.includes('premium') || query.includes('free') || 
+                              query.includes('grátis') || query.includes('gratuito') || query.includes('pago');
+      
+      if (hasPremiumSearch) {
+        return matchesPremium && matchesCategory;
+      }
+      
+      return matchesText && matchesCategory;
     });
   }, [searchQuery, selectedCategory]);
 
@@ -49,6 +72,9 @@ const AIDirectory = () => {
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Descubra as melhores ferramentas de inteligência artificial organizadas por categoria. 
               Explore, pesquise e encontre a solução perfeita para seus projetos.
+            </p>
+            <p className="text-sm text-gray-400 mt-4">
+              💡 Dica: Pesquise por "premium", "free", "grátis" ou "pago" para filtrar por tipo de acesso
             </p>
           </div>
         </div>
@@ -82,6 +108,11 @@ const AIDirectory = () => {
                 em {categories.find(cat => cat.id === selectedCategory)?.name}
               </span>
             )}
+            {searchQuery && (
+              <span className="ml-2 text-cyan-400">
+                para "{searchQuery}"
+              </span>
+            )}
           </p>
         </div>
       </div>
@@ -107,6 +138,9 @@ const AIDirectory = () => {
             </h3>
             <p className="text-gray-400">
               Tente ajustar sua pesquisa ou selecionar uma categoria diferente
+            </p>
+            <p className="text-gray-500 text-sm mt-2">
+              Experimente pesquisar por "premium", "free", nome da ferramenta ou categoria
             </p>
           </div>
         )}

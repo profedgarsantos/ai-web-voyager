@@ -14,7 +14,7 @@ const SearchBar = ({ searchQuery, onSearchChange }: SearchBarProps) => {
       </div>
       <input
         type="text"
-        placeholder="Pesquisar ferramentas de IA..."
+        placeholder="Pesquisar por nome, descrição, tags, 'premium', 'free'..."
         value={searchQuery}
         onChange={(e) => onSearchChange(e.target.value)}
         className="w-full pl-12 pr-12 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 backdrop-blur-sm"
