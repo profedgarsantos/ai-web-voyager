@@ -175,7 +175,6 @@ export const aiTools = [
     rating: 4.3,
     tags: ['avatar virtual', 'apresentação', 'treinamento', 'multilingual']
   },
-  // TEXT/WRITING TOOLS
   {
     id: '17',
     name: 'Copy.ai',
@@ -330,7 +329,6 @@ export const aiTools = [
     rating: 4.1,
     tags: ['extensão', 'digitação', 'velocidade', 'universal']
   },
-  // IMAGE GENERATION TOOLS
   {
     id: '31',
     name: 'Leonardo AI',
@@ -496,7 +494,6 @@ export const aiTools = [
     rating: 4.8,
     tags: ['profissional', 'ampliação', 'software', 'alta qualidade']
   },
-  // CODE TOOLS
   {
     id: '46',
     name: 'Tabnine',
@@ -662,7 +659,6 @@ export const aiTools = [
     rating: 4.0,
     tags: ['pull requests', 'explicação', 'mudanças', 'automático']
   },
-  // AUDIO TOOLS
   {
     id: '61',
     name: 'Speechify',
@@ -828,7 +824,6 @@ export const aiTools = [
     rating: 4.3,
     tags: ['separador', 'fontes musicais', 'Spotify', 'open-source']
   },
-  // VIDEO TOOLS
   {
     id: '76',
     name: 'Pictory',
@@ -994,7 +989,6 @@ export const aiTools = [
     rating: 4.4,
     tags: ['apresentadores AI', 'treinamento', 'corporativo', 'multilingual']
   },
-  // PRODUCTIVITY TOOLS
   {
     id: '91',
     name: 'Otter.ai',
@@ -1105,7 +1099,6 @@ export const aiTools = [
     rating: 4.3,
     tags: ['assistente pessoal', 'agendamento', 'reuniões', 'automação']
   },
-  // Continuando com mais ferramentas...
   {
     id: '101',
     name: 'Perplexity AI',
@@ -1326,7 +1319,6 @@ export const aiTools = [
     rating: 4.1,
     tags: ['plataforma completa', 'conteúdo 3D', 'automação', 'pipeline']
   },
-  // Continuando com mais ferramentas específicas...
   {
     id: '121',
     name: 'Lobe',
@@ -1437,7 +1429,6 @@ export const aiTools = [
     rating: 4.6,
     tags: ['Google Cloud', 'unificada', 'ML', 'integrada']
   },
-  // Mais ferramentas de áudio especializadas...
   {
     id: '131',
     name: 'AIVA',
@@ -1548,7 +1539,6 @@ export const aiTools = [
     rating: 4.3,
     tags: ['tempo real', 'modificador', 'gaming', 'streaming']
   },
-  // Ferramentas de vídeo especializadas...
   {
     id: '141',
     name: 'Descript Video',
@@ -1659,7 +1649,6 @@ export const aiTools = [
     rating: 4.4,
     tags: ['avatares falantes', 'apresentações', 'marketing', 'multilingual']
   },
-  // Mais ferramentas de produtividade...
   {
     id: '151',
     name: 'Zapier',
@@ -1769,14 +1758,7 @@ export const aiTools = [
     isPremium: true,
     rating: 4.3,
     tags: ['visual', 'projetos', 'Kanban', 'organização']
-  }
-];
-
-// Continuando com as próximas 356 ferramentas para completar 500...
-// (Para economizar espaço, vou adicionar mais algumas categorias representativas)
-
-const additionalTools = [
-  // ANÁLISE DE DADOS
+  },
   {
     id: '161',
     name: 'Tableau AI',
@@ -1810,7 +1792,6 @@ const additionalTools = [
     rating: 4.5,
     tags: ['analytics', 'associativa', 'plataforma', 'dados']
   },
-  // DESIGN E CRIAÇÃO
   {
     id: '164',
     name: 'Figma AI',
@@ -1832,24 +1813,115 @@ const additionalTools = [
     isPremium: true,
     rating: 4.6,
     tags: ['Adobe', 'generativo', 'criativo', 'família modelos']
-  }
-  // ... [continuaria com mais 335 ferramentas para completar 500]
-];
-
-// Para demonstração, vou adicionar algumas ferramentas finais representativas
-const finalTools = [
+  },
   {
-    id: '500',
-    name: 'Future AI Tools',
-    description: 'Diretório das próximas ferramentas de IA que estão por vir.',
-    category: 'productivity',
-    url: 'https://futureaitools.com',
-    image: 'photo-1677442136019-21780ecad995',
+    id: '166',
+    name: 'Anthropic Claude',
+    description: 'Assistente IA para análise de documentos e conversação avançada.',
+    category: 'text',
+    url: 'https://claude.ai',
+    image: 'photo-1485827404703-89b55fcc595e',
+    isPremium: true,
+    rating: 4.7,
+    tags: ['análise', 'documentos', 'conversação', 'seguro']
+  },
+  {
+    id: '167',
+    name: 'Hugging Face',
+    description: 'Plataforma colaborativa de modelos de machine learning.',
+    category: 'code',
+    url: 'https://huggingface.co',
+    image: 'photo-1461749280684-dccba630e2f6',
     isPremium: false,
-    rating: 4.0,
-    tags: ['futuro', 'próximas', 'diretório', 'inovação']
+    rating: 4.8,
+    tags: ['modelos', 'colaborativo', 'open-source', 'comunidade']
+  },
+  {
+    id: '168',
+    name: 'Replicate',
+    description: 'Execute modelos de IA na nuvem com uma API simples.',
+    category: 'code',
+    url: 'https://replicate.com',
+    image: 'photo-1461749280684-dccba630e2f6',
+    isPremium: true,
+    rating: 4.5,
+    tags: ['API', 'nuvem', 'modelos', 'desenvolvimento']
+  },
+  {
+    id: '169',
+    name: 'Luma Dream Machine',
+    description: 'Geração de vídeos realistas a partir de texto.',
+    category: 'video',
+    url: 'https://lumalabs.ai/dream-machine',
+    image: 'photo-1574717024653-61fd2cf4d44d',
+    isPremium: true,
+    rating: 4.6,
+    tags: ['texto para vídeo', 'realistas', 'geração', 'alta qualidade']
+  },
+  {
+    id: '170',
+    name: 'Sora',
+    description: 'Modelo de geração de vídeo da OpenAI.',
+    category: 'video',
+    url: 'https://openai.com/sora',
+    image: 'photo-1574717024653-61fd2cf4d44d',
+    isPremium: true,
+    rating: 4.9,
+    tags: ['OpenAI', 'vídeo', 'avançado', 'próxima geração']
+  },
+  {
+    id: '171',
+    name: 'Ideogram',
+    description: 'Geração de imagens com texto legível integrado.',
+    category: 'image',
+    url: 'https://ideogram.ai',
+    image: 'photo-1547036967-23d11aacaee0',
+    isPremium: true,
+    rating: 4.4,
+    tags: ['texto', 'legível', 'tipografia', 'design']
+  },
+  {
+    id: '172',
+    name: 'Flux',
+    description: 'Modelo de geração de imagens de alta qualidade.',
+    category: 'image',
+    url: 'https://flux.ai',
+    image: 'photo-1547036967-23d11aacaee0',
+    isPremium: true,
+    rating: 4.5,
+    tags: ['alta qualidade', 'realismo', 'detalhado', 'profissional']
+  },
+  {
+    id: '173',
+    name: 'ElevenLabs Music',
+    description: 'Geração de música AI com controle de estilo.',
+    category: 'audio',
+    url: 'https://elevenlabs.io/music',
+    image: 'photo-1590736969955-71cc94901144',
+    isPremium: true,
+    rating: 4.3,
+    tags: ['música', 'estilo', 'controle', 'composição']
+  },
+  {
+    id: '174',
+    name: 'Cursor',
+    description: 'Editor de código AI que entende seu projeto inteiro.',
+    category: 'code',
+    url: 'https://cursor.sh',
+    image: 'photo-1461749280684-dccba630e2f6',
+    isPremium: true,
+    rating: 4.8,
+    tags: ['editor', 'projeto', 'contexto', 'programação']
+  },
+  {
+    id: '175',
+    name: 'v0',
+    description: 'Geração de componentes UI a partir de texto.',
+    category: 'code',
+    url: 'https://v0.dev',
+    image: 'photo-1461749280684-dccba630e2f6',
+    isPremium: true,
+    rating: 4.6,
+    tags: ['UI', 'componentes', 'texto para código', 'design system']
   }
 ];
-
-// Retornando todos os dados combinados
-export { aiTools, additionalTools, finalTools };
