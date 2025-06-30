@@ -1,3 +1,4 @@
+
 export const aiTools = [
   // ... keep existing code (first 175 tools) the same ...
   {
@@ -6533,4 +6534,4 @@ export const aiTools = [
     isPremium: false,
     rating: 4.1,
     tags: ['compras', 'Pinterest', 'integradas', 'descoberta']
-  }]
+  },

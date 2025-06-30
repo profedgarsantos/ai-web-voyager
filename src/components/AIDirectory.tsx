@@ -1,3 +1,4 @@
+
 import { useState, useMemo } from 'react';
 import { Search, Sparkles, Brain, Filter } from 'lucide-react';
 import SearchBar from './SearchBar';
@@ -11,25 +12,15 @@ const AIDirectory = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [premiumFilter, setPremiumFilter] = useState('all');
 
-  // Calculate categories with tools that have multiple categories
-  const categories = useMemo(() => {
-    const categoryCounts = aiTools.reduce((acc, tool) => {
-      tool.categories.forEach(category => {
-        acc[category] = (acc[category] || 0) + 1;
-      });
-      return acc;
-    }, {} as Record<string, number>);
-
-    return [
-      { id: 'all', name: 'Todas as Categorias', count: aiTools.length },
-      { id: 'text', name: 'Texto', count: categoryCounts.text || 0 },
-      { id: 'image', name: 'Imagem', count: categoryCounts.image || 0 },
-      { id: 'code', name: 'Código', count: categoryCounts.code || 0 },
-      { id: 'audio', name: 'Áudio', count: categoryCounts.audio || 0 },
-      { id: 'video', name: 'Vídeo', count: categoryCounts.video || 0 },
-      { id: 'productivity', name: 'Produtividade', count: categoryCounts.productivity || 0 },
-    ];
-  }, []);
+  const categories = [
+    { id: 'all', name: 'Todas as Categorias', count: aiTools.length },
+    { id: 'text', name: 'Texto', count: aiTools.filter(tool => tool.category === 'text').length },
+    { id: 'image', name: 'Imagem', count: aiTools.filter(tool => tool.category === 'image').length },
+    { id: 'code', name: 'Código', count: aiTools.filter(tool => tool.category === 'code').length },
+    { id: 'audio', name: 'Áudio', count: aiTools.filter(tool => tool.category === 'audio').length },
+    { id: 'video', name: 'Vídeo', count: aiTools.filter(tool => tool.category === 'video').length },
+    { id: 'productivity', name: 'Produtividade', count: aiTools.filter(tool => tool.category === 'productivity').length },
+  ];
 
   const premiumOptions = [
     { id: 'all', name: 'Todas as Ferramentas', count: aiTools.length },
@@ -47,8 +38,8 @@ const AIDirectory = () => {
         tool.description.toLowerCase().includes(query) ||
         tool.tags.some(tag => tag.toLowerCase().includes(query));
       
-      // Busca por categoria - now checks if any of the tool's categories match
-      const matchesCategory = selectedCategory === 'all' || tool.categories.includes(selectedCategory);
+      // Busca por categoria
+      const matchesCategory = selectedCategory === 'all' || tool.category === selectedCategory;
       
       // Busca por status premium
       const matchesPremium = premiumFilter === 'all' || 
