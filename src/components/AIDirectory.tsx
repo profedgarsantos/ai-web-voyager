@@ -1,4 +1,3 @@
-
 import { useState, useMemo } from 'react';
 import { Search, Sparkles, Brain, Filter } from 'lucide-react';
 import SearchBar from './SearchBar';
@@ -12,21 +11,40 @@ const AIDirectory = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [premiumFilter, setPremiumFilter] = useState('all');
 
-  const categories = [
-    { id: 'all', name: 'Todas as Categorias', count: aiTools.length },
-    { id: 'text', name: 'Texto', count: aiTools.filter(tool => tool.category === 'text').length },
-    { id: 'image', name: 'Imagem', count: aiTools.filter(tool => tool.category === 'image').length },
-    { id: 'code', name: 'Código', count: aiTools.filter(tool => tool.category === 'code').length },
-    { id: 'audio', name: 'Áudio', count: aiTools.filter(tool => tool.category === 'audio').length },
-    { id: 'video', name: 'Vídeo', count: aiTools.filter(tool => tool.category === 'video').length },
-    { id: 'productivity', name: 'Produtividade', count: aiTools.filter(tool => tool.category === 'productivity').length },
-  ];
+  // Calcular categorias únicas e suas contagens
+  const categories = useMemo(() => {
+    const allCategories = aiTools.flatMap(tool => tool.categories);
+    const uniqueCategories = [...new Set(allCategories)];
+    
+    const categoryData = [
+      { id: 'all', name: 'Todas as Categorias', count: aiTools.length },
+      ...uniqueCategories.map(category => ({
+        id: category,
+        name: getCategoryName(category),
+        count: aiTools.filter(tool => tool.categories.includes(category)).length
+      }))
+    ];
+    
+    return categoryData;
+  }, []);
 
   const premiumOptions = [
     { id: 'all', name: 'Todas as Ferramentas', count: aiTools.length },
     { id: 'free', name: 'Gratuitas', count: aiTools.filter(tool => !tool.isPremium).length },
     { id: 'premium', name: 'Premium', count: aiTools.filter(tool => tool.isPremium).length },
   ];
+
+  const getCategoryName = (category: string) => {
+    const names = {
+      text: 'Texto',
+      image: 'Imagem',
+      code: 'Código',
+      audio: 'Áudio',
+      video: 'Vídeo',
+      productivity: 'Produtividade',
+    };
+    return names[category as keyof typeof names] || category;
+  };
 
   const filteredTools = useMemo(() => {
     return aiTools.filter(tool => {
@@ -36,10 +54,11 @@ const AIDirectory = () => {
       const matchesText = !query || 
         tool.name.toLowerCase().includes(query) ||
         tool.description.toLowerCase().includes(query) ||
-        tool.tags.some(tag => tag.toLowerCase().includes(query));
+        tool.tags.some(tag => tag.toLowerCase().includes(query)) ||
+        tool.categories.some(category => getCategoryName(category).toLowerCase().includes(query));
       
-      // Busca por categoria
-      const matchesCategory = selectedCategory === 'all' || tool.category === selectedCategory;
+      // Busca por categoria (verifica se a ferramenta tem a categoria selecionada)
+      const matchesCategory = selectedCategory === 'all' || tool.categories.includes(selectedCategory);
       
       // Busca por status premium
       const matchesPremium = premiumFilter === 'all' || 

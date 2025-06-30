@@ -1,4 +1,3 @@
-
 import { ExternalLink, Star, Zap } from 'lucide-react';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -7,7 +6,7 @@ interface AITool {
   id: string;
   name: string;
   description: string;
-  category: string;
+  categories: string[]; // Mudança: agora é um array
   url: string;
   image: string;
   isPremium: boolean;
@@ -33,10 +32,27 @@ const getCategoryColor = (category: string) => {
   return colors[category as keyof typeof colors] || 'from-gray-500 to-gray-600';
 };
 
+const getCategoryName = (category: string) => {
+  const names = {
+    text: 'Texto',
+    image: 'Imagem',
+    code: 'Código',
+    audio: 'Áudio',
+    video: 'Vídeo',
+    productivity: 'Produtividade',
+  };
+  return names[category as keyof typeof names] || category;
+};
+
 const AICard = ({ tool, className = '', style }: AICardProps) => {
   const handleOpenSite = () => {
     window.open(tool.url, '_blank', 'noopener,noreferrer');
   };
+
+  // Categoria principal (primeira da lista)
+  const primaryCategory = tool.categories[0];
+  // Categorias secundárias
+  const secondaryCategories = tool.categories.slice(1);
 
   return (
     <Card 
@@ -62,12 +78,31 @@ const AICard = ({ tool, className = '', style }: AICardProps) => {
             </div>
           )}
 
-          {/* Category Badge */}
+          {/* Categoria Principal */}
           <div className="absolute top-3 left-3">
-            <Badge className={`bg-gradient-to-r ${getCategoryColor(tool.category)} text-white border-0 capitalize`}>
-              {tool.category}
+            <Badge className={`bg-gradient-to-r ${getCategoryColor(primaryCategory)} text-white border-0`}>
+              {getCategoryName(primaryCategory)}
             </Badge>
           </div>
+
+          {/* Categorias Secundárias */}
+          {secondaryCategories.length > 0 && (
+            <div className="absolute top-12 left-3 flex flex-wrap gap-1 max-w-[calc(100%-6rem)]">
+              {secondaryCategories.slice(0, 2).map((category, index) => (
+                <Badge 
+                  key={index}
+                  className={`bg-gradient-to-r ${getCategoryColor(category)} text-white border-0 text-xs opacity-90`}
+                >
+                  {getCategoryName(category)}
+                </Badge>
+              ))}
+              {secondaryCategories.length > 2 && (
+                <Badge className="bg-white/20 text-white border-0 text-xs">
+                  +{secondaryCategories.length - 2}
+                </Badge>
+              )}
+            </div>
+          )}
 
           {/* Rating */}
           <div className="absolute bottom-3 left-3 flex items-center space-x-1">
@@ -101,6 +136,12 @@ const AICard = ({ tool, className = '', style }: AICardProps) => {
               +{tool.tags.length - 3}
             </Badge>
           )}
+        </div>
+
+        {/* Todas as categorias em texto pequeno */}
+        <div className="text-xs text-gray-400 mb-2">
+          <span className="font-medium">Categorias: </span>
+          {tool.categories.map(getCategoryName).join(', ')}
         </div>
       </CardContent>
 
