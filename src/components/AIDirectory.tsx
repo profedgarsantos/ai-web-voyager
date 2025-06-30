@@ -11,6 +11,19 @@ const AIDirectory = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [premiumFilter, setPremiumFilter] = useState('all');
 
+  // Move getCategoryName function before its first use
+  const getCategoryName = (category: string) => {
+    const names = {
+      text: 'Texto',
+      image: 'Imagem',
+      code: 'Código',
+      audio: 'Áudio',
+      video: 'Vídeo',
+      productivity: 'Produtividade',
+    };
+    return names[category as keyof typeof names] || category;
+  };
+
   // Calcular categorias únicas e suas contagens
   const categories = useMemo(() => {
     const allCategories = aiTools.flatMap(tool => tool.categories);
@@ -33,18 +46,6 @@ const AIDirectory = () => {
     { id: 'free', name: 'Gratuitas', count: aiTools.filter(tool => !tool.isPremium).length },
     { id: 'premium', name: 'Premium', count: aiTools.filter(tool => tool.isPremium).length },
   ];
-
-  const getCategoryName = (category: string) => {
-    const names = {
-      text: 'Texto',
-      image: 'Imagem',
-      code: 'Código',
-      audio: 'Áudio',
-      video: 'Vídeo',
-      productivity: 'Produtividade',
-    };
-    return names[category as keyof typeof names] || category;
-  };
 
   const filteredTools = useMemo(() => {
     return aiTools.filter(tool => {
