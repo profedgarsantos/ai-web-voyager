@@ -6534,4 +6534,4 @@ export const aiTools = [
     isPremium: false,
     rating: 4.1,
     tags: ['compras', 'Pinterest', 'integradas', 'descoberta']
-  },
+  }]
