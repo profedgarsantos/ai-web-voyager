@@ -87,8 +87,8 @@ const AIDirectory = () => {
                 <Brain className="w-12 h-12 text-purple-400" />
                 <Sparkles className="w-6 h-6 text-pink-400 absolute -top-1 -right-1 animate-pulse" />
               </div>
-              <h1 className="text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
-                IACatálogo
+              <h1 className="text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent font-mono tracking-wider">
+                IA<span className="text-white">Catálogo</span>
               </h1>
             </div>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8">
@@ -101,7 +101,7 @@ const AIDirectory = () => {
           <div className="max-w-6xl mx-auto">
             <div className="bg-gradient-to-r from-white/15 to-white/10 backdrop-blur-xl rounded-3xl p-8 border-2 border-white/30 shadow-2xl ring-2 ring-purple-500/30">
               <div className="mb-6 text-center">
-                <h2 className="text-3xl font-bold text-white mb-3 flex items-center justify-center gap-3">
+                <h2 className="text-3xl font-bold text-white mb-3 flex items-center justify-center gap-3 font-mono">
                   <Search className="w-8 h-8 text-purple-400" />
                   Encontre sua Ferramenta de IA
                 </h2>
@@ -120,7 +120,7 @@ const AIDirectory = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-end">
                   {/* Category Filter */}
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-300 flex items-center gap-2">
+                    <label className="text-sm font-medium text-gray-300 flex items-center gap-2 font-mono">
                       <Filter className="w-4 h-4" />
                       Categoria
                     </label>
@@ -140,7 +140,7 @@ const AIDirectory = () => {
                   
                   {/* Premium Filter */}
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-300 flex items-center gap-2">
+                    <label className="text-sm font-medium text-gray-300 flex items-center gap-2 font-mono">
                       <Sparkles className="w-4 h-4" />
                       Tipo de Acesso
                     </label>
@@ -163,7 +163,7 @@ const AIDirectory = () => {
                     <label className="text-sm font-medium text-transparent">Ação</label>
                     <Button 
                       onClick={handleSearch}
-                      className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 border-0"
+                      className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 border-0 font-mono"
                       size="lg"
                     >
                       <Search className="w-5 h-5 mr-2" />
@@ -180,7 +180,7 @@ const AIDirectory = () => {
       {/* Results Counter */}
       <div className="container mx-auto px-6 py-8">
         <div className="flex items-center justify-between">
-          <p className="text-gray-300">
+          <p className="text-gray-300 font-mono">
             <span className="text-2xl font-bold text-white">{filteredTools.length}</span> ferramentas encontradas
             {selectedCategory !== 'all' && (
               <span className="ml-2 text-purple-400">
@@ -217,7 +217,7 @@ const AIDirectory = () => {
         ) : (
           <div className="text-center py-16">
             <Search className="w-16 h-16 text-gray-500 mx-auto mb-4" />
-            <h3 className="text-2xl font-semibold text-gray-300 mb-2">
+            <h3 className="text-2xl font-semibold text-gray-300 mb-2 font-mono">
               Nenhuma ferramenta encontrada
             </h3>
             <p className="text-gray-400">
