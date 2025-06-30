@@ -57,7 +57,7 @@ const AICard = ({ tool, className = '', style }: AICardProps) => {
             <div className="absolute top-3 right-3">
               <Badge className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white border-0">
                 <Zap className="w-3 h-3 mr-1" />
-                Premium
+                Paga
               </Badge>
             </div>
           )}
