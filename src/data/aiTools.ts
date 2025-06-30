@@ -1,3 +1,4 @@
+
 export const aiTools = [
   {
     id: '1',
@@ -5,7 +6,7 @@ export const aiTools = [
     description: 'Modelo de linguagem avançado da OpenAI para conversas, escrita criativa, programação e resolução de problemas complexos.',
     category: 'text',
     url: 'https://chat.openai.com',
-    image: 'photo-1677442136019-21780ecad995',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg',
     isPremium: true,
     rating: 4.8,
     tags: ['conversação', 'escrita', 'programação', 'análise']
@@ -16,7 +17,7 @@ export const aiTools = [
     description: 'Gerador de imagens AI que cria arte digital impressionante a partir de descrições de texto com qualidade profissional.',
     category: 'image',
     url: 'https://midjourney.com',
-    image: 'photo-1547036967-23d11aacaee0',
+    image: 'https://cdn.midjourney.com/b07ddb63-6c21-4f34-b99c-1f2e7c3f9b8d/0_0.png',
     isPremium: true,
     rating: 4.9,
     tags: ['arte digital', 'design', 'criatividade', 'ilustração']
@@ -27,7 +28,7 @@ export const aiTools = [
     description: 'Assistente de programação AI que sugere código em tempo real, aumentando a produtividade dos desenvolvedores.',
     category: 'code',
     url: 'https://github.com/features/copilot',
-    image: 'photo-1461749280684-dccba630e2f6',
+    image: 'https://github.githubassets.com/assets/hero-copilot-4f4c4b3ebd.png',
     isPremium: true,
     rating: 4.7,
     tags: ['programação', 'autocompletar', 'desenvolvimento', 'produtividade']
@@ -38,7 +39,7 @@ export const aiTools = [
     description: 'Plataforma de criação de vídeo com IA, incluindo edição avançada, efeitos especiais e geração de conteúdo.',
     category: 'video',
     url: 'https://runwayml.com',
-    image: 'photo-1574717024653-61fd2cf4d44d',
+    image: 'https://res.cloudinary.com/runway/image/upload/f_auto,q_auto/v1/runway-production/runway-ui/homepage/gen2_hero_video_thumbnail.jpg',
     isPremium: true,
     rating: 4.6,
     tags: ['edição de vídeo', 'efeitos especiais', 'criação', 'multimedia']
@@ -49,7 +50,7 @@ export const aiTools = [
     description: 'Síntese de voz AI realista que clona vozes e gera narrações com qualidade profissional em múltiplos idiomas.',
     category: 'audio',
     url: 'https://elevenlabs.io',
-    image: 'photo-1590736969955-71cc94901144',
+    image: 'https://images.unsplash.com/photo-1590736969955-71cc94901144?w=400&h=300&fit=crop',
     isPremium: true,
     rating: 4.8,
     tags: ['síntese de voz', 'clonagem', 'narração', 'podcast']
