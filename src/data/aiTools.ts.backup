@@ -1,0 +1,234 @@
+export interface AITool {
+  id: string;
+  name: string;
+  description: string;
+  categories: string[]; // Mudança: agora é um array de categorias
+  url: string;
+  image: string;
+  isPremium: boolean;
+  rating: number;
+  tags: string[];
+}
+
+export const aiTools: AITool[] = [
+  {
+    id: '1',
+    name: 'ChatGPT',
+    description: 'Modelo de linguagem avançado da OpenAI para conversas, escrita, programação e análise de dados.',
+    categories: ['text', 'code', 'productivity'],
+    url: 'https://chat.openai.com',
+    image: 'photo-1677442136019-21780ecad995',
+    isPremium: true,
+    rating: 4.8,
+    tags: ['conversação', 'escrita', 'programação', 'análise']
+  },
+  {
+    id: '2',
+    name: 'DALL-E 3',
+    description: 'Gerador de imagens por IA da OpenAI com qualidade fotorrealística e criatividade excepcional.',
+    categories: ['image'],
+    url: 'https://openai.com/dall-e-3',
+    image: 'photo-1686191128892-34c1b6b4b6c7',
+    isPremium: true,
+    rating: 4.7,
+    tags: ['geração de imagens', 'arte', 'criatividade']
+  },
+  {
+    id: '3',
+    name: 'GitHub Copilot',
+    description: 'Assistente de programação por IA que ajuda a escrever código mais rápido e eficiente.',
+    categories: ['code', 'productivity'],
+    url: 'https://github.com/features/copilot',
+    image: 'photo-1618477247222-acbdb0e159b3',
+    isPremium: true,
+    rating: 4.6,
+    tags: ['programação', 'autocompletar', 'desenvolvimento']
+  },
+  {
+    id: '4',
+    name: 'Midjourney',
+    description: 'Plataforma de geração de imagens artísticas por IA com estilos únicos e qualidade impressionante.',
+    categories: ['image'],
+    url: 'https://midjourney.com',
+    image: 'photo-1634017839464-5c339ebe3cb4',
+    isPremium: true,
+    rating: 4.9,
+    tags: ['arte digital', 'ilustração', 'design']
+  },
+  {
+    id: '5',
+    name: 'Notion AI',
+    description: 'Assistente de IA integrado ao Notion para escrita, resumos, tradução e organização de conteúdo.',
+    categories: ['text', 'productivity'],
+    url: 'https://notion.so/product/ai',
+    image: 'photo-1611224923853-80b023f02d71',
+    isPremium: true,
+    rating: 4.5,
+    tags: ['produtividade', 'escrita', 'organização']
+  },
+  {
+    id: '6',
+    name: 'Stable Diffusion',
+    description: 'Modelo open-source de geração de imagens por IA com controle total e personalização.',
+    categories: ['image'],
+    url: 'https://stability.ai/stable-diffusion',
+    image: 'photo-1547036967-23d11aacaee0',
+    isPremium: false,
+    rating: 4.4,
+    tags: ['open-source', 'geração de imagens', 'personalização']
+  },
+  {
+    id: '7',
+    name: 'Claude',
+    description: 'Assistente de IA da Anthropic focado em conversas úteis, harmless e honestas.',
+    categories: ['text', 'productivity'],
+    url: 'https://claude.ai',
+    image: 'photo-1620712943543-bcc4688e7485',
+    isPremium: true,
+    rating: 4.6,
+    tags: ['conversação', 'análise', 'escrita']
+  },
+  {
+    id: '8',
+    name: 'ElevenLabs',
+    description: 'Plataforma de síntese de voz por IA com vozes realísticas e clonagem vocal.',
+    categories: ['audio'],
+    url: 'https://elevenlabs.io',
+    image: 'photo-1590602847861-f357a9332bbc',
+    isPremium: true,
+    rating: 4.7,
+    tags: ['síntese de voz', 'clonagem vocal', 'áudio']
+  },
+  {
+    id: '9',
+    name: 'RunwayML',
+    description: 'Suite completa de ferramentas de IA para criação de vídeos, imagens e efeitos visuais.',
+    categories: ['video', 'image'],
+    url: 'https://runwayml.com',
+    image: 'photo-1574717024653-61fd2cf4d44d',
+    isPremium: true,
+    rating: 4.5,
+    tags: ['edição de vídeo', 'efeitos visuais', 'criação de conteúdo']
+  },
+  {
+    id: '10',
+    name: 'Grammarly',
+    description: 'Assistente de escrita por IA que corrige gramática, estilo e tom em tempo real.',
+    categories: ['text', 'productivity'],
+    url: 'https://grammarly.com',
+    image: 'photo-1455390582262-044cdead277a',
+    isPremium: true,
+    rating: 4.3,
+    tags: ['correção gramatical', 'escrita', 'produtividade']
+  },
+  {
+    id: '11',
+    name: 'Canva AI',
+    description: 'Ferramentas de design por IA integradas ao Canva para criação automática de layouts e elementos.',
+    categories: ['image', 'productivity'],
+    url: 'https://canva.com/ai',
+    image: 'photo-1611224923853-80b023f02d71',
+    isPremium: true,
+    rating: 4.4,
+    tags: ['design gráfico', 'templates', 'criação automática']
+  },
+  {
+    id: '12',
+    name: 'Jasper',
+    description: 'Plataforma de copywriting por IA para marketing, blogs e conteúdo comercial.',
+    categories: ['text', 'productivity'],
+    url: 'https://jasper.ai',
+    image: 'photo-1542744173-8e7e53415bb0',
+    isPremium: true,
+    rating: 4.2,
+    tags: ['copywriting', 'marketing', 'conteúdo comercial']
+  },
+  {
+    id: '13',
+    name: 'Murf AI',
+    description: 'Gerador de voz por IA com múltiplas vozes e idiomas para narração e apresentações.',
+    categories: ['audio', 'productivity'],
+    url: 'https://murf.ai',
+    image: 'photo-1590602847861-f357a9332bbc',
+    isPremium: true,
+    rating: 4.3,
+    tags: ['narração', 'apresentações', 'múltiplas vozes']
+  },
+  {
+    id: '14',
+    name: 'Synthesia',
+    description: 'Plataforma de criação de vídeos com avatares de IA para treinamentos e apresentações.',
+    categories: ['video', 'productivity'],
+    url: 'https://synthesia.io',
+    image: 'photo-1574717024653-61fd2cf4d44d',
+    isPremium: true,
+    rating: 4.4,
+    tags: ['avatares de IA', 'vídeos corporativos', 'treinamento']
+  },
+  {
+    id: '15',
+    name: 'Perplexity AI',
+    description: 'Motor de busca por IA que fornece respostas precisas com fontes verificadas.',
+    categories: ['text', 'productivity'],
+    url: 'https://perplexity.ai',
+    image: 'photo-1620712943543-bcc4688e7485',
+    isPremium: false,
+    rating: 4.5,
+    tags: ['busca', 'pesquisa', 'fontes verificadas']
+  },
+  {
+    id: '16',
+    name: 'Luma AI',
+    description: 'Ferramenta de captura 3D por IA que transforma vídeos em modelos tridimensionais.',
+    categories: ['video', 'image'],
+    url: 'https://lumalabs.ai',
+    image: 'photo-1547036967-23d11aacaee0',
+    isPremium: true,
+    rating: 4.6,
+    tags: ['captura 3D', 'modelos 3D', 'realidade aumentada']
+  },
+  {
+    id: '17',
+    name: 'Copy.ai',
+    description: 'Assistente de escrita por IA para criação de conteúdo de marketing e vendas.',
+    categories: ['text', 'productivity'],
+    url: 'https://copy.ai',
+    image: 'photo-1542744173-8e7e53415bb0',
+    isPremium: true,
+    rating: 4.1,
+    tags: ['marketing', 'vendas', 'conteúdo automático']
+  },
+  {
+    id: '18',
+    name: 'Pictory',
+    description: 'Criador de vídeos por IA que transforma texto e artigos em vídeos envolventes.',
+    categories: ['video', 'text'],
+    url: 'https://pictory.ai',
+    image: 'photo-1574717024653-61fd2cf4d44d',
+    isPremium: true,
+    rating: 4.3,
+    tags: ['texto para vídeo', 'vídeos automáticos', 'conteúdo visual']
+  },
+  {
+    id: '19',
+    name: 'Replicate',
+    description: 'Plataforma para executar modelos de IA open-source na nuvem com facilidade.',
+    categories: ['code', 'image', 'audio', 'video'],
+    url: 'https://replicate.com',
+    image: 'photo-1618477247222-acbdb0e159b3',
+    isPremium: false,
+    rating: 4.4,
+    tags: ['open-source', 'nuvem', 'múltiplos modelos']
+  },
+  {
+    id: '20',
+    name: 'Otter.ai',
+    description: 'Transcrição automática de reuniões e conversas com resumos inteligentes por IA.',
+    categories: ['audio', 'productivity'],
+    url: 'https://otter.ai',
+    image: 'photo-1590602847861-f357a9332bbc',
+    isPremium: true,
+    rating: 4.2,
+    tags: ['transcrição', 'reuniões', 'resumos automáticos']
+  }
+];
