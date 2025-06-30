@@ -1,23 +1,31 @@
 
 import { useState, useMemo } from 'react';
-import { Search, Sparkles, Brain } from 'lucide-react';
+import { Search, Sparkles, Brain, Filter } from 'lucide-react';
 import SearchBar from './SearchBar';
-import CategoryFilter from './CategoryFilter';
 import AICard from './AICard';
+import { Button } from '@/components/ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { aiTools } from '@/data/aiTools';
 
 const AIDirectory = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [premiumFilter, setPremiumFilter] = useState('all');
 
   const categories = [
-    { id: 'all', name: 'Todos', count: aiTools.length },
+    { id: 'all', name: 'Todas as Categorias', count: aiTools.length },
     { id: 'text', name: 'Texto', count: aiTools.filter(tool => tool.category === 'text').length },
     { id: 'image', name: 'Imagem', count: aiTools.filter(tool => tool.category === 'image').length },
     { id: 'code', name: 'Código', count: aiTools.filter(tool => tool.category === 'code').length },
     { id: 'audio', name: 'Áudio', count: aiTools.filter(tool => tool.category === 'audio').length },
     { id: 'video', name: 'Vídeo', count: aiTools.filter(tool => tool.category === 'video').length },
     { id: 'productivity', name: 'Produtividade', count: aiTools.filter(tool => tool.category === 'productivity').length },
+  ];
+
+  const premiumOptions = [
+    { id: 'all', name: 'Todas as Ferramentas', count: aiTools.length },
+    { id: 'free', name: 'Gratuitas', count: aiTools.filter(tool => !tool.isPremium).length },
+    { id: 'premium', name: 'Premium', count: aiTools.filter(tool => tool.isPremium).length },
   ];
 
   const filteredTools = useMemo(() => {
@@ -34,32 +42,26 @@ const AIDirectory = () => {
       const matchesCategory = selectedCategory === 'all' || tool.category === selectedCategory;
       
       // Busca por status premium
-      const matchesPremium = !query || 
-        (query.includes('premium') && tool.isPremium) ||
-        (query.includes('free') && !tool.isPremium) ||
-        (query.includes('grátis') && !tool.isPremium) ||
-        (query.includes('gratuito') && !tool.isPremium) ||
-        (query.includes('pago') && tool.isPremium);
+      const matchesPremium = premiumFilter === 'all' || 
+        (premiumFilter === 'premium' && tool.isPremium) ||
+        (premiumFilter === 'free' && !tool.isPremium);
       
-      // Se a busca contém termos de premium/free, prioriza essa condição
-      const hasPremiumSearch = query.includes('premium') || query.includes('free') || 
-                              query.includes('grátis') || query.includes('gratuito') || query.includes('pago');
-      
-      if (hasPremiumSearch) {
-        return matchesPremium && matchesCategory;
-      }
-      
-      return matchesText && matchesCategory;
+      return matchesText && matchesCategory && matchesPremium;
     });
-  }, [searchQuery, selectedCategory]);
+  }, [searchQuery, selectedCategory, premiumFilter]);
+
+  const handleSearch = () => {
+    // A busca já acontece automaticamente através dos filtros
+    console.log('Buscando com:', { searchQuery, selectedCategory, premiumFilter });
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900">
-      {/* Header with Search */}
+      {/* Header with Enhanced Search */}
       <header className="relative overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20 backdrop-blur-sm"></div>
-        <div className="relative container mx-auto px-6 pt-12 pb-8">
-          <div className="text-center mb-8">
+        <div className="relative container mx-auto px-6 pt-12 pb-12">
+          <div className="text-center mb-12">
             <div className="flex items-center justify-center gap-3 mb-6">
               <div className="relative">
                 <Brain className="w-12 h-12 text-purple-400" />
@@ -69,34 +71,85 @@ const AIDirectory = () => {
                 AI Directory
               </h1>
             </div>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-6">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8">
               Descubra as melhores ferramentas de inteligência artificial organizadas por categoria. 
               Explore, pesquise e encontre a solução perfeita para seus projetos.
             </p>
           </div>
           
-          {/* Highlighted Search Section */}
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 shadow-2xl ring-1 ring-purple-500/20">
-              <div className="mb-4 text-center">
-                <h2 className="text-2xl font-semibold text-white mb-2 flex items-center justify-center gap-2">
-                  <Search className="w-6 h-6 text-purple-400" />
-                  Buscar Ferramentas de IA
+          {/* Enhanced Search Section */}
+          <div className="max-w-6xl mx-auto">
+            <div className="bg-gradient-to-r from-white/15 to-white/10 backdrop-blur-xl rounded-3xl p-8 border-2 border-white/30 shadow-2xl ring-2 ring-purple-500/30">
+              <div className="mb-6 text-center">
+                <h2 className="text-3xl font-bold text-white mb-3 flex items-center justify-center gap-3">
+                  <Search className="w-8 h-8 text-purple-400" />
+                  Encontre sua Ferramenta de IA
                 </h2>
-                <p className="text-sm text-gray-400">
-                  💡 Pesquise por nome, descrição, tags, "premium", "free", "grátis" ou "pago"
+                <p className="text-gray-300">
+                  🔍 Use os filtros abaixo para encontrar exatamente o que você precisa
                 </p>
               </div>
-              <div className="flex flex-col lg:flex-row gap-4 items-center">
-                <div className="flex-1 w-full">
+              
+              <div className="space-y-6">
+                {/* Search Bar */}
+                <div className="w-full">
                   <SearchBar searchQuery={searchQuery} onSearchChange={setSearchQuery} />
                 </div>
-                <div className="w-full lg:w-auto">
-                  <CategoryFilter 
-                    categories={categories}
-                    selectedCategory={selectedCategory}
-                    onCategoryChange={setSelectedCategory}
-                  />
+                
+                {/* Filters Row */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-end">
+                  {/* Category Filter */}
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-gray-300 flex items-center gap-2">
+                      <Filter className="w-4 h-4" />
+                      Categoria
+                    </label>
+                    <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                      <SelectTrigger className="w-full bg-white/10 border-white/20 text-white">
+                        <SelectValue placeholder="Selecione uma categoria" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-gray-800 border-gray-700">
+                        {categories.map((category) => (
+                          <SelectItem key={category.id} value={category.id} className="text-white hover:bg-gray-700">
+                            {category.name} ({category.count})
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  {/* Premium Filter */}
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-gray-300 flex items-center gap-2">
+                      <Sparkles className="w-4 h-4" />
+                      Tipo de Acesso
+                    </label>
+                    <Select value={premiumFilter} onValueChange={setPremiumFilter}>
+                      <SelectTrigger className="w-full bg-white/10 border-white/20 text-white">
+                        <SelectValue placeholder="Filtrar por acesso" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-gray-800 border-gray-700">
+                        {premiumOptions.map((option) => (
+                          <SelectItem key={option.id} value={option.id} className="text-white hover:bg-gray-700">
+                            {option.name} ({option.count})
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  {/* Search Button */}
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-transparent">Ação</label>
+                    <Button 
+                      onClick={handleSearch}
+                      className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 border-0"
+                      size="lg"
+                    >
+                      <Search className="w-5 h-5 mr-2" />
+                      Buscar Ferramentas
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -114,8 +167,13 @@ const AIDirectory = () => {
                 em {categories.find(cat => cat.id === selectedCategory)?.name}
               </span>
             )}
-            {searchQuery && (
+            {premiumFilter !== 'all' && (
               <span className="ml-2 text-cyan-400">
+                • {premiumOptions.find(opt => opt.id === premiumFilter)?.name}
+              </span>
+            )}
+            {searchQuery && (
+              <span className="ml-2 text-yellow-400">
                 para "{searchQuery}"
               </span>
             )}
@@ -143,10 +201,10 @@ const AIDirectory = () => {
               Nenhuma ferramenta encontrada
             </h3>
             <p className="text-gray-400">
-              Tente ajustar sua pesquisa ou selecionar uma categoria diferente
+              Tente ajustar sua pesquisa ou selecionar filtros diferentes
             </p>
             <p className="text-gray-500 text-sm mt-2">
-              Experimente pesquisar por "premium", "free", nome da ferramenta ou categoria
+              Use a barra de busca e os filtros de categoria e tipo de acesso
             </p>
           </div>
         )}
