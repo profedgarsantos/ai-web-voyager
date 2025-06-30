@@ -7,7 +7,7 @@ interface AITool {
   id: string;
   name: string;
   description: string;
-  category: string;
+  categories: string[]; // Updated to array
   url: string;
   image: string;
   isPremium: boolean;
@@ -46,9 +46,14 @@ const AICard = ({ tool, className = '', style }: AICardProps) => {
       <CardHeader className="p-0 relative">
         <div className="relative h-48 overflow-hidden">
           <img
-            src={`https://images.unsplash.com/${tool.image}?w=400&h=300&fit=crop`}
+            src={tool.image}
             alt={tool.name}
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+            onError={(e) => {
+              // Fallback to a default image if the tool image fails to load
+              const target = e.target as HTMLImageElement;
+              target.src = `https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop`;
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
           
@@ -62,11 +67,26 @@ const AICard = ({ tool, className = '', style }: AICardProps) => {
             </div>
           )}
 
-          {/* Category Badge */}
-          <div className="absolute top-3 left-3">
-            <Badge className={`bg-gradient-to-r ${getCategoryColor(tool.category)} text-white border-0 capitalize`}>
-              {tool.category}
-            </Badge>
+          {/* Multiple Category Badges */}
+          <div className="absolute top-3 left-3 flex flex-wrap gap-1">
+            {tool.categories.slice(0, 2).map((category, index) => (
+              <Badge 
+                key={index}
+                className={`bg-gradient-to-r ${getCategoryColor(category)} text-white border-0 capitalize text-xs`}
+              >
+                {category === 'text' ? 'Texto' : 
+                 category === 'image' ? 'Imagem' :
+                 category === 'code' ? 'Código' :
+                 category === 'audio' ? 'Áudio' :
+                 category === 'video' ? 'Vídeo' :
+                 category === 'productivity' ? 'Produtividade' : category}
+              </Badge>
+            ))}
+            {tool.categories.length > 2 && (
+              <Badge className="bg-gradient-to-r from-gray-500 to-gray-600 text-white border-0 text-xs">
+                +{tool.categories.length - 2}
+              </Badge>
+            )}
           </div>
 
           {/* Rating */}
