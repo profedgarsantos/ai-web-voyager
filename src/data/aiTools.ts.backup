@@ -1,3 +1,4 @@
+
 export interface AITool {
   id: string;
   name: string;
@@ -230,16 +231,5 @@ export const aiTools: AITool[] = [
     isPremium: true,
     rating: 4.2,
     tags: ['transcrição', 'reuniões', 'resumos automáticos']
-  },
-  {
-    id: '21',
-    name: 'Context Encoder',
-    description: 'Ferramenta avançada de processamento de linguagem natural para análise contextual de textos.',
-    categories: ['text', 'code'],
-    url: 'https://contextencoder.ai',
-    image: 'photo-1461749280684-dccba630e2f6',
-    isPremium: true,
-    rating: 4.5,
-    tags: ['processamento de linguagem', 'análise contextual', 'NLP']
   }
 ];
