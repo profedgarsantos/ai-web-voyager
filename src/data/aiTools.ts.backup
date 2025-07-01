@@ -1,3 +1,4 @@
+
 export interface AITool {
   id: string;
   name: string;
@@ -17,7 +18,7 @@ export const aiTools: AITool[] = [
     description: 'Modelo de linguagem avançado da OpenAI para conversas, escrita, programação e análise de dados.',
     categories: ['text', 'code', 'productivity'],
     url: 'https://chat.openai.com',
-    image: 'photo-1677442136019-21780ecad995',
+    image: 'photo-1488590528505-98d2b5aba04b',
     isPremium: true,
     rating: 4.8,
     tags: ['conversação', 'escrita', 'programação', 'análise']
@@ -28,7 +29,7 @@ export const aiTools: AITool[] = [
     description: 'Gerador de imagens por IA da OpenAI com qualidade fotorrealística e criatividade excepcional.',
     categories: ['image'],
     url: 'https://openai.com/dall-e-3',
-    image: 'photo-1686191128892-34c1b6b4b6c7',
+    image: 'photo-1649972904349-6e44c42644a7',
     isPremium: true,
     rating: 4.7,
     tags: ['geração de imagens', 'arte', 'criatividade']
@@ -39,7 +40,7 @@ export const aiTools: AITool[] = [
     description: 'Assistente de programação por IA que ajuda a escrever código mais rápido e eficiente.',
     categories: ['code', 'productivity'],
     url: 'https://github.com/features/copilot',
-    image: 'photo-1618477247222-acbdb0e159b3',
+    image: 'photo-1461749280684-dccba630e2f6',
     isPremium: true,
     rating: 4.6,
     tags: ['programação', 'autocompletar', 'desenvolvimento']
@@ -50,7 +51,7 @@ export const aiTools: AITool[] = [
     description: 'Plataforma de geração de imagens artísticas por IA com estilos únicos e qualidade impressionante.',
     categories: ['image'],
     url: 'https://midjourney.com',
-    image: 'photo-1634017839464-5c339ebe3cb4',
+    image: 'photo-1649972904349-6e44c42644a7',
     isPremium: true,
     rating: 4.9,
     tags: ['arte digital', 'ilustração', 'design']
@@ -61,7 +62,7 @@ export const aiTools: AITool[] = [
     description: 'Assistente de IA integrado ao Notion para escrita, resumos, tradução e organização de conteúdo.',
     categories: ['text', 'productivity'],
     url: 'https://notion.so/product/ai',
-    image: 'photo-1611224923853-80b023f02d71',
+    image: 'photo-1486312338219-ce68d2c6f44d',
     isPremium: true,
     rating: 4.5,
     tags: ['produtividade', 'escrita', 'organização']
@@ -72,7 +73,7 @@ export const aiTools: AITool[] = [
     description: 'Modelo open-source de geração de imagens por IA com controle total e personalização.',
     categories: ['image'],
     url: 'https://stability.ai/stable-diffusion',
-    image: 'photo-1547036967-23d11aacaee0',
+    image: 'photo-1649972904349-6e44c42644a7',
     isPremium: false,
     rating: 4.4,
     tags: ['open-source', 'geração de imagens', 'personalização']
@@ -83,7 +84,7 @@ export const aiTools: AITool[] = [
     description: 'Assistente de IA da Anthropic focado em conversas úteis, harmless e honestas.',
     categories: ['text', 'productivity'],
     url: 'https://claude.ai',
-    image: 'photo-1620712943543-bcc4688e7485',
+    image: 'photo-1488590528505-98d2b5aba04b',
     isPremium: true,
     rating: 4.6,
     tags: ['conversação', 'análise', 'escrita']
@@ -94,7 +95,7 @@ export const aiTools: AITool[] = [
     description: 'Plataforma de síntese de voz por IA com vozes realísticas e clonagem vocal.',
     categories: ['audio'],
     url: 'https://elevenlabs.io',
-    image: 'photo-1590602847861-f357a9332bbc',
+    image: 'photo-1518770660439-4636190af475',
     isPremium: true,
     rating: 4.7,
     tags: ['síntese de voz', 'clonagem vocal', 'áudio']
@@ -105,7 +106,7 @@ export const aiTools: AITool[] = [
     description: 'Suite completa de ferramentas de IA para criação de vídeos, imagens e efeitos visuais.',
     categories: ['video', 'image'],
     url: 'https://runwayml.com',
-    image: 'photo-1574717024653-61fd2cf4d44d',
+    image: 'photo-1649972904349-6e44c42644a7',
     isPremium: true,
     rating: 4.5,
     tags: ['edição de vídeo', 'efeitos visuais', 'criação de conteúdo']
@@ -116,7 +117,7 @@ export const aiTools: AITool[] = [
     description: 'Assistente de escrita por IA que corrige gramática, estilo e tom em tempo real.',
     categories: ['text', 'productivity'],
     url: 'https://grammarly.com',
-    image: 'photo-1455390582262-044cdead277a',
+    image: 'photo-1486312338219-ce68d2c6f44d',
     isPremium: true,
     rating: 4.3,
     tags: ['correção gramatical', 'escrita', 'produtividade']
@@ -127,7 +128,7 @@ export const aiTools: AITool[] = [
     description: 'Ferramentas de design por IA integradas ao Canva para criação automática de layouts e elementos.',
     categories: ['image', 'productivity'],
     url: 'https://canva.com/ai',
-    image: 'photo-1611224923853-80b023f02d71',
+    image: 'photo-1649972904349-6e44c42644a7',
     isPremium: true,
     rating: 4.4,
     tags: ['design gráfico', 'templates', 'criação automática']
@@ -138,7 +139,7 @@ export const aiTools: AITool[] = [
     description: 'Plataforma de copywriting por IA para marketing, blogs e conteúdo comercial.',
     categories: ['text', 'productivity'],
     url: 'https://jasper.ai',
-    image: 'photo-1542744173-8e7e53415bb0',
+    image: 'photo-1488590528505-98d2b5aba04b',
     isPremium: true,
     rating: 4.2,
     tags: ['copywriting', 'marketing', 'conteúdo comercial']
@@ -149,7 +150,7 @@ export const aiTools: AITool[] = [
     description: 'Gerador de voz por IA com múltiplas vozes e idiomas para narração e apresentações.',
     categories: ['audio', 'productivity'],
     url: 'https://murf.ai',
-    image: 'photo-1590602847861-f357a9332bbc',
+    image: 'photo-1518770660439-4636190af475',
     isPremium: true,
     rating: 4.3,
     tags: ['narração', 'apresentações', 'múltiplas vozes']
@@ -160,7 +161,7 @@ export const aiTools: AITool[] = [
     description: 'Plataforma de criação de vídeos com avatares de IA para treinamentos e apresentações.',
     categories: ['video', 'productivity'],
     url: 'https://synthesia.io',
-    image: 'photo-1574717024653-61fd2cf4d44d',
+    image: 'photo-1486312338219-ce68d2c6f44d',
     isPremium: true,
     rating: 4.4,
     tags: ['avatares de IA', 'vídeos corporativos', 'treinamento']
@@ -171,7 +172,7 @@ export const aiTools: AITool[] = [
     description: 'Motor de busca por IA que fornece respostas precisas com fontes verificadas.',
     categories: ['text', 'productivity'],
     url: 'https://perplexity.ai',
-    image: 'photo-1620712943543-bcc4688e7485',
+    image: 'photo-1488590528505-98d2b5aba04b',
     isPremium: false,
     rating: 4.5,
     tags: ['busca', 'pesquisa', 'fontes verificadas']
@@ -182,7 +183,7 @@ export const aiTools: AITool[] = [
     description: 'Ferramenta de captura 3D por IA que transforma vídeos em modelos tridimensionais.',
     categories: ['video', 'image'],
     url: 'https://lumalabs.ai',
-    image: 'photo-1547036967-23d11aacaee0',
+    image: 'photo-1649972904349-6e44c42644a7',
     isPremium: true,
     rating: 4.6,
     tags: ['captura 3D', 'modelos 3D', 'realidade aumentada']
@@ -193,7 +194,7 @@ export const aiTools: AITool[] = [
     description: 'Assistente de escrita por IA para criação de conteúdo de marketing e vendas.',
     categories: ['text', 'productivity'],
     url: 'https://copy.ai',
-    image: 'photo-1542744173-8e7e53415bb0',
+    image: 'photo-1488590528505-98d2b5aba04b',
     isPremium: true,
     rating: 4.1,
     tags: ['marketing', 'vendas', 'conteúdo automático']
@@ -204,7 +205,7 @@ export const aiTools: AITool[] = [
     description: 'Criador de vídeos por IA que transforma texto e artigos em vídeos envolventes.',
     categories: ['video', 'text'],
     url: 'https://pictory.ai',
-    image: 'photo-1574717024653-61fd2cf4d44d',
+    image: 'photo-1486312338219-ce68d2c6f44d',
     isPremium: true,
     rating: 4.3,
     tags: ['texto para vídeo', 'vídeos automáticos', 'conteúdo visual']
@@ -215,7 +216,7 @@ export const aiTools: AITool[] = [
     description: 'Plataforma para executar modelos de IA open-source na nuvem com facilidade.',
     categories: ['code', 'image', 'audio', 'video'],
     url: 'https://replicate.com',
-    image: 'photo-1618477247222-acbdb0e159b3',
+    image: 'photo-1461749280684-dccba630e2f6',
     isPremium: false,
     rating: 4.4,
     tags: ['open-source', 'nuvem', 'múltiplos modelos']
@@ -226,7 +227,7 @@ export const aiTools: AITool[] = [
     description: 'Transcrição automática de reuniões e conversas com resumos inteligentes por IA.',
     categories: ['audio', 'productivity'],
     url: 'https://otter.ai',
-    image: 'photo-1590602847861-f357a9332bbc',
+    image: 'photo-1518770660439-4636190af475',
     isPremium: true,
     rating: 4.2,
     tags: ['transcrição', 'reuniões', 'resumos automáticos']
