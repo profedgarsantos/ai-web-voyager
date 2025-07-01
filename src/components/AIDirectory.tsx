@@ -1,5 +1,5 @@
-import { useState, useMemo } from 'react';
-import { Search, Sparkles, Brain, Filter } from 'lucide-react';
+import { useState, useMemo, useEffect } from 'react';
+import { Search, Sparkles, Brain, Filter, Loader } from 'lucide-react';
 import SearchBar from './SearchBar';
 import AICard from './AICard';
 import { Button } from '@/components/ui/button';
@@ -10,6 +10,7 @@ const AIDirectory = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [premiumFilter, setPremiumFilter] = useState('all');
+  const [isSearching, setIsSearching] = useState(false);
 
   // Move getCategoryName function before its first use
   const getCategoryName = (category: string) => {
@@ -23,6 +24,18 @@ const AIDirectory = () => {
     };
     return names[category as keyof typeof names] || category;
   };
+
+  // Simular carregamento quando há mudanças nos filtros
+  useEffect(() => {
+    if (searchQuery || selectedCategory !== 'all' || premiumFilter !== 'all') {
+      setIsSearching(true);
+      const timer = setTimeout(() => {
+        setIsSearching(false);
+      }, 800); // 800ms de carregamento simulado
+      
+      return () => clearTimeout(timer);
+    }
+  }, [searchQuery, selectedCategory, premiumFilter]);
 
   // Calcular categorias únicas e suas contagens
   const categories = useMemo(() => {
@@ -49,16 +62,18 @@ const AIDirectory = () => {
 
   const filteredTools = useMemo(() => {
     return aiTools.filter(tool => {
-      const query = searchQuery.toLowerCase();
+      const query = searchQuery.toLowerCase().trim();
       
-      // Busca por texto (nome, descrição, tags)
+      // Melhorar a busca por texto
       const matchesText = !query || 
         tool.name.toLowerCase().includes(query) ||
         tool.description.toLowerCase().includes(query) ||
         tool.tags.some(tag => tag.toLowerCase().includes(query)) ||
-        tool.categories.some(category => getCategoryName(category).toLowerCase().includes(query));
+        tool.categories.some(category => getCategoryName(category).toLowerCase().includes(query)) ||
+        (query === 'premium' && tool.isPremium) ||
+        (query === 'free' && !tool.isPremium);
       
-      // Busca por categoria (verifica se a ferramenta tem a categoria selecionada)
+      // Busca por categoria
       const matchesCategory = selectedCategory === 'all' || tool.categories.includes(selectedCategory);
       
       // Busca por status premium
@@ -71,7 +86,11 @@ const AIDirectory = () => {
   }, [searchQuery, selectedCategory, premiumFilter]);
 
   const handleSearch = () => {
-    // A busca já acontece automaticamente através dos filtros
+    // Forçar uma nova busca
+    setIsSearching(true);
+    setTimeout(() => {
+      setIsSearching(false);
+    }, 800);
     console.log('Buscando com:', { searchQuery, selectedCategory, premiumFilter });
   };
 
@@ -201,34 +220,60 @@ const AIDirectory = () => {
         </div>
       </div>
 
-      {/* Tools Grid */}
-      <main className="container mx-auto px-6 pb-16">
-        {filteredTools.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredTools.map((tool, index) => (
-              <AICard 
-                key={tool.id} 
-                tool={tool} 
-                className="animate-fade-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-16">
-            <Search className="w-16 h-16 text-gray-500 mx-auto mb-4" />
-            <h3 className="text-2xl font-semibold text-gray-300 mb-2 font-mono">
-              Nenhuma ferramenta encontrada
+      {/* Loading State */}
+      {isSearching && (
+        <div className="container mx-auto px-6 pb-16">
+          <div className="flex flex-col items-center justify-center py-16">
+            <div className="relative">
+              <Loader className="w-12 h-12 text-purple-400 animate-spin" />
+              <Sparkles className="w-6 h-6 text-pink-400 absolute -top-1 -right-1 animate-pulse" />
+            </div>
+            <h3 className="text-2xl font-semibold text-white mt-6 mb-2 font-mono">
+              Buscando ferramentas...
             </h3>
-            <p className="text-gray-400">
-              Tente ajustar sua pesquisa ou selecionar filtros diferentes
+            <p className="text-gray-300 text-center max-w-md">
+              Estamos procurando as melhores ferramentas de IA para você. 
+              Aguarde um momento!
             </p>
-            <p className="text-gray-500 text-sm mt-2">
-              Use a barra de busca e os filtros de categoria e tipo de acesso
-            </p>
+            <div className="mt-4 flex space-x-1">
+              <div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce"></div>
+              <div className="w-2 h-2 bg-pink-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
+              <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+            </div>
           </div>
-        )}
-      </main>
+        </div>
+      )}
+
+      {/* Tools Grid */}
+      {!isSearching && (
+        <main className="container mx-auto px-6 pb-16">
+          {filteredTools.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {filteredTools.map((tool, index) => (
+                <AICard 
+                  key={tool.id} 
+                  tool={tool} 
+                  className="animate-fade-in"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-16">
+              <Search className="w-16 h-16 text-gray-500 mx-auto mb-4" />
+              <h3 className="text-2xl font-semibold text-gray-300 mb-2 font-mono">
+                Nenhuma ferramenta encontrada
+              </h3>
+              <p className="text-gray-400">
+                Tente ajustar sua pesquisa ou selecionar filtros diferentes
+              </p>
+              <p className="text-gray-500 text-sm mt-2">
+                Use a barra de busca e os filtros de categoria e tipo de acesso
+              </p>
+            </div>
+          )}
+        </main>
+      )}
     </div>
   );
 };
